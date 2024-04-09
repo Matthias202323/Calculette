@@ -1,81 +1,141 @@
-﻿using System.Diagnostics.Metrics;
 
-namespace Calculette
+using System.ComponentModel.Design;
+
+namespace Quetes_boucle
 {
     internal class Program
     {
+
+
         static void Main(string[] args)
+
         {
+            string msgError = "";
+            double stockResult = 0;
+
+
+            /* ///////////////////////////////////////////////////////////////////////Déclaration des fonctions///////////////////////////////////////////////////////////////////////// */
+            /* Cette partie consiste à declarer mes fonctions
+              * Comme expliqué dans le challenge 
+                * on aura la fonction 
+                  * Add : pour l'addition
+                    * Substract : pour la soustraction
+                     * Multiply : pour la multiplication
+                       * Divide : pour la division
+                         * Modulo : pour le modulo
+                           */
+
+            static double Add(double a, double b) // Déclaration de la fonction addition
+            {
+                return a + b;
+            }
+            static double Substract(double a, double b) // Déclaration de la fonction  soustraction
+            {
+                return a - b;
+            }
+            static double Multiply(double a, double b) // Déclaration de la fonction  multiplication
+            {
+                return a * b;
+            }
+            static double Divide(double a, double b) // Déclaration de la fonction Division
+            {
+                return a / b;
+            }
+            static double Modulo(double a, double b) // Déclaration de la fonction Modulo
+            {
+                return a % b;
+            }
+
+            /* ///////////////////////////////////////////////////////////////////////Debut de l'execution du code///////////////////////////////////////////////////////////////////////// */
+
+
             while (true)
             {
-                Console.WriteLine("First operand :");
 
-                string input = Console.ReadLine();
-                float first = float.Parse(input);
+                Console.WriteLine($"Resultat : {stockResult} {msgError}");
+                stockResult = 0;
+                msgError = "";
+                Console.Write("Appuyez sur Entrée pour continuer...");
+                Console.ReadLine();
+                Console.Clear();
+                Console.WriteLine("Saisissez la valeur 1 :");
 
-                Console.WriteLine("Second operand :");
-                string input2 = Console.ReadLine();
-                float second = float.Parse(input2);
+                double maValeur1;
 
-                Console.WriteLine("Which operation ?");
-                string op = Console.ReadLine();
-                switch (op)
+                while (!double.TryParse(Console.ReadLine(), out maValeur1))
                 {
-                    case "add":
-                    case "+":
-                        Add(first, second);
-                        break;
-                    case "multiply":
-                    case "x":
-                        Multiply(first, second);
-                        break;
-                    case "substract":
-                    case "-":
-                        Substract(first, second);
-                        break;
-                    case "divide":
-                    case "/":
-                        Divide(first, second);
-                        break;
-                    case "modulo":
-                    case "%":
-                        Modulo(first, second);
-                        break;
-                    default:
-                        Console.WriteLine("Invalid Operation");
-                        break;
+                    Console.Clear();
+                    Console.WriteLine("les caracteres ne sont pas accepter, Veuillez Saisir un nombre !");
+                }
+                Console.Clear();
+                Console.WriteLine("Saisissez la valeur 2 :");
+                double maValeur2;
+
+                while (!double.TryParse(Console.ReadLine(), out maValeur2))
+                {
+                    Console.Clear();
+                    Console.WriteLine("les caracteres ne sont pas accepter, Veuillez Saisir un nombre !");
+                }
+                Console.Clear();
+                Console.WriteLine("Quelle operation souhaitez-vous effectuer ?  ");
+                Console.WriteLine("----------------------------------------------------------------------");
+                Console.WriteLine(" ");
+                Console.WriteLine("=> Add pour Addition ");
+                Console.WriteLine("=> Substract pour Soustraction ");
+                Console.WriteLine("=> Multiply pour Multiplication ");
+                Console.WriteLine("=> Divide pour Division ");
+                Console.WriteLine("=> Modulo pour Modulo ");
+                Console.WriteLine("----------------------------------------------------------------------");
+                Console.WriteLine(" ");
+                string monOperation = Console.ReadLine();
+
+
+                /* Cette partie est pour l'assignation  
+                  * des valeurs des données entrées
+                    *  il est directement saisi par le IS
+                        */
+
+                double maValeurInt1 = maValeur1;
+                double maValeurInt2 = maValeur2;
+
+                if (monOperation.ToLower() == "add")
+                {
+                    double resultAdd = Add(maValeurInt1, maValeurInt2);
+                    stockResult = resultAdd;
+                    Console.Clear();
+                }
+                else if (monOperation.ToLower() == "substract")
+                {
+                    double resultSubstract = Substract(maValeurInt1, maValeurInt2);
+                    stockResult = resultSubstract;
+                    Console.Clear();
+                }
+                else if (monOperation.ToLower() == "multiply")
+                {
+                    double resultMultiply = Multiply(maValeurInt1, maValeurInt2);
+                    stockResult = resultMultiply;
+                    Console.Clear();
+                }
+                else if (monOperation.ToLower() == "divide")
+                {
+                    double resultDivide = Divide(maValeurInt1, maValeurInt2);
+                    stockResult = resultDivide;
+                    Console.Clear();
+                }
+                else if (monOperation.ToLower() == "modulo")
+                {
+                    double resultModulo = Modulo(maValeurInt1, maValeurInt2);
+                    stockResult = resultModulo;
+                    Console.Clear();
+                }
+                else
+                {
+                    Console.Clear();
+                    msgError = "Vous avez saisi une mauvaise operation !";
                 }
             }
-        }
-        static void Add(float input , float input2)
-        {
-            float addResult = input + input2;
-            Console.WriteLine(input + " + " + input2 + " = " + addResult);
-        }
-        static void Substract(float input, float input2)
-        {
-            float subResult = input - input2;
-            Console.WriteLine(input + " - " + input2 + " = " + subResult);
 
         }
-        static void Multiply(float input, float input2)
-        {
-            
-            float mulResult = input * input2;
-            Console.WriteLine(input + " x " + input2 + " = " + mulResult);
-            
-        }
-        static void Divide(float input, float input2)
-        {
 
-            float divResult = input / input2;
-            Console.WriteLine(input + " / " + input2 + " = " + divResult);
-
-        }
-        static void Modulo(float input, float input2)
-        {
-            float modResult = input % input2;
-            Console.WriteLine(input + " % " + input2 + " = " + modResult);
-        }
     }
 }
